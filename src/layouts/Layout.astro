@@ -1,3 +1,15 @@
+---
+import '../styles/global.css';
+import Menu from '../components/menu/menu';
+import Footer from '../components/footer/Footer.astro';
+const { 
+  title = "Josué Dev - Diseno-Interiores",
+  description = "Desarrollador Full Stack especializado en React, Node.js, Astro y tecnologías modernas. Creando experiencias digitales excepcionales.",
+  showMenu = true,
+  showFooter = true
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,18 +17,42 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
 	</head>
+	
 	<body>
-		<slot />
+		<div class="page-wrapper">
+			{showMenu && (
+				<header class="menu-fijo">
+					<Menu client:load />
+				</header>
+			)}	
+			<main class="main-content">
+				<slot />
+			</main>
+			{showFooter && <Footer />}
+		</div>
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+/* Layout Structure */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Ensure body takes full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 </style>
+

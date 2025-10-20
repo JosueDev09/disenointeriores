@@ -1,0 +1,485 @@
+---
+// Hero component for Interior Design with video slider
+---
+
+<div id="hero" class="relative h-screen overflow-hidden">
+  <!-- Video Slider Container -->
+  <div class="video-slider relative w-full h-full">
+    <!-- Video Slides -->
+    <div class="slide active" data-slide="0">
+      <video
+        class="w-full h-full object-cover"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+        <source src="/videos/hero2.mp4" type="video/mp4" />
+        <!-- Fallback image -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#F5F1EB] via-[#FAF9F6] to-[#F8F8F8]"></div>
+      </video>
+      <div class="overlay"></div>
+    </div>
+
+    <div class="slide" data-slide="1">
+      <video
+        class="w-full h-full object-cover"
+        muted
+        loop
+        playsinline
+      >
+        <source src="/videos/hero1.mp4" type="video/mp4" />
+        <!-- Fallback image -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#9CAF88] via-[#A8BCCC] to-[#D4A574]"></div>
+      </video>
+      <div class="overlay"></div>
+    </div>
+
+    <div class="slide" data-slide="2">
+      <video
+        class="w-full h-full object-cover"
+        muted
+        loop
+        playsinline
+      >
+        <source src="/videos/hero3.mp4" type="video/mp4" />
+        <!-- Fallback image -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#E8B4A0] via-[#D4A574] to-[#FFFEF7]"></div>
+      </video>
+      <div class="overlay"></div>
+    </div>
+  </div>
+
+  <!-- Hero Content Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center z-20">
+    <div class="text-center px-6 md:px-12 max-w-4xl">
+      <!-- Main Heading -->
+      <h1 class="hero-title text-4xl md:text-6xl lg:text-7xl font-bold mb-6 opacity-0">
+        <span class="gradient-text">Diseño de Interiores</span>
+        <br>
+        <span class="text-[#FAF9F6] drop-shadow-lg">Excepcional</span>
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="hero-subtitle text-lg md:text-xl lg:text-2xl text-[#FAF9F6] mb-8 opacity-0 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+        Transformamos espacios en experiencias únicas que reflejan tu personalidad y estilo de vida
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center opacity-0">
+        <a href="/projects" class="cta-primary px-8 py-4 rounded-full text-lg font-semibold transition-all duration-500 transform hover:scale-105">
+          Ver Proyectos
+        </a>
+        <a href="/contact" class="cta-secondary px-8 py-4 rounded-full text-lg font-semibold transition-all duration-500 transform hover:scale-105">
+          Contactar Ahora
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Dots -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
+    <div class="flex space-x-3">
+      <button class="dot active" data-slide="0"></button>
+      <button class="dot" data-slide="1"></button>
+      <button class="dot" data-slide="2"></button>
+    </div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <button class="nav-arrow prev absolute left-6 top-1/2 transform -translate-y-1/2 z-30">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  
+  <button class="nav-arrow next absolute right-6 top-1/2 transform -translate-y-1/2 z-30">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- Scroll Down Indicator -->
+  <div class="absolute bottom-8 right-8 z-30">
+    <div class="scroll-indicator animate-bounce">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 13L12 18L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 6L12 11L17 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Hero Styles */
+#hero {
+  position: relative;
+  background: linear-gradient(135deg, #F5F1EB 0%, #FAF9F6 50%, #F8F8F8 100%);
+}
+
+/* Video Slider Styles */
+.video-slider {
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slide video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Video Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(47, 47, 47, 0.3) 0%,
+    rgba(156, 175, 136, 0.2) 25%,
+    rgba(212, 165, 116, 0.2) 50%,
+    rgba(232, 180, 160, 0.3) 75%,
+    rgba(47, 47, 47, 0.4) 100%
+  );
+  z-index: 10;
+}
+
+/* Typography */
+.gradient-text {
+  background: linear-gradient(135deg, #9CAF88 0%, #D4A574 50%, #E8B4A0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(2px 2px 4px rgba(47, 47, 47, 0.3));
+}
+
+/* CTA Buttons */
+.cta-primary {
+  background: linear-gradient(135deg, #9CAF88 0%, #D4A574 100%);
+  color: #FAF9F6;
+  border: 2px solid transparent;
+  box-shadow: 0 8px 25px rgba(156, 175, 136, 0.4);
+}
+
+.cta-primary:hover {
+  background: linear-gradient(135deg, #D4A574 0%, #E8B4A0 100%);
+  box-shadow: 0 12px 35px rgba(212, 165, 116, 0.5);
+  transform: scale(1.05) translateY(-2px);
+}
+
+.cta-secondary {
+  background: rgba(250, 249, 246, 0.2);
+  color: #FAF9F6;
+  border: 2px solid rgba(250, 249, 246, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.cta-secondary:hover {
+  background: rgba(250, 249, 246, 0.3);
+  border-color: rgba(232, 180, 160, 0.5);
+  box-shadow: 0 8px 25px rgba(250, 249, 246, 0.2);
+}
+
+/* Navigation Dots */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(250, 249, 246, 0.5);
+  border: 2px solid rgba(250, 249, 246, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: linear-gradient(135deg, #9CAF88 0%, #D4A574 100%);
+  border-color: #FAF9F6;
+  transform: scale(1.2);
+}
+
+.dot:hover {
+  background: rgba(232, 180, 160, 0.7);
+  transform: scale(1.1);
+}
+
+/* Navigation Arrows */
+.nav-arrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(250, 249, 246, 0.2);
+  border: 2px solid rgba(250, 249, 246, 0.3);
+  backdrop-filter: blur(10px);
+  color: #FAF9F6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-arrow:hover {
+  background: rgba(156, 175, 136, 0.3);
+  border-color: rgba(212, 165, 116, 0.5);
+  transform: scale(1.1);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  color: #FAF9F6;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title {
+  animation: fadeInUp 1s ease 0.5s forwards;
+}
+
+.hero-subtitle {
+  animation: fadeInUp 1s ease 0.8s forwards;
+}
+
+.hero-buttons {
+  animation: fadeInUp 1s ease 1.1s forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .nav-arrow.prev {
+    left: 4px;
+  }
+  
+  .nav-arrow.next {
+    right: 4px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .cta-primary, .cta-secondary {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
+</style>
+
+<script is:inline>
+class VideoHeroSlider {
+  currentSlide;
+  slides;
+  dots;
+  prevButton;
+  nextButton;
+  //autoplayInterval;
+  autoplayDelay;
+  
+  constructor() {
+    this.currentSlide = 0;
+    this.slides = document.querySelectorAll('.slide');
+    this.dots = document.querySelectorAll('.dot');
+    this.prevButton = document.querySelector('.nav-arrow.prev');
+    this.nextButton = document.querySelector('.nav-arrow.next');
+    //this.autoplayInterval = null;
+    this.autoplayDelay = 8000; // 8 segundos
+    
+    this.init();
+  }
+  
+  init() {
+    // Event listeners for dots
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        this.goToSlide(index);
+      });
+    });
+    
+    // Event listeners for arrows
+    this.prevButton?.addEventListener('click', () => {
+      this.previousSlide();
+    });
+    
+    this.nextButton?.addEventListener('click', () => {
+      this.nextSlide();
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') this.previousSlide();
+      if (e.key === 'ArrowRight') this.nextSlide();
+    });
+    
+    // Touch/swipe support
+    this.addTouchSupport();
+    
+    // Start autoplay
+    this.startAutoplay();
+    
+    // Pause autoplay on hover
+    const heroElement = document.getElementById('hero');
+    heroElement?.addEventListener('mouseenter', () => this.stopAutoplay());
+    heroElement?.addEventListener('mouseleave', () => this.startAutoplay());
+  }
+  
+  goToSlide(slideIndex) {
+    // Remove active classes
+    this.slides[this.currentSlide]?.classList.remove('active');
+    this.dots[this.currentSlide]?.classList.remove('active');
+    
+    // Pause current video
+    const currentVideo = this.slides[this.currentSlide]?.querySelector('video');
+    if (currentVideo) {
+      currentVideo.pause();
+    }
+    
+    // Update current slide
+    this.currentSlide = slideIndex;
+    
+    // Add active classes
+    this.slides[this.currentSlide]?.classList.add('active');
+    this.dots[this.currentSlide]?.classList.add('active');
+    
+    // Play new video
+    const newVideo = this.slides[this.currentSlide]?.querySelector('video');
+    if (newVideo) {
+      newVideo.currentTime = 0;
+      newVideo.play().catch(e => console.log('Video autoplay prevented:', e));
+    }
+    
+    // Restart autoplay
+    this.restartAutoplay();
+  }
+  
+  nextSlide() {
+    const nextIndex = (this.currentSlide + 1) % this.slides.length;
+    this.goToSlide(nextIndex);
+  }
+  
+  previousSlide() {
+    const prevIndex = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+    this.goToSlide(prevIndex);
+  }
+  
+  startAutoplay() {
+    this.stopAutoplay();
+    this.autoplayInterval = setInterval(() => {
+      this.nextSlide();
+    }, this.autoplayDelay);
+  }
+  
+  stopAutoplay() {
+    if (this.autoplayInterval) {
+      clearInterval(this.autoplayInterval);
+      this.autoplayInterval = null;
+    }
+  }
+  
+  restartAutoplay() {
+    this.stopAutoplay();
+    this.startAutoplay();
+  }
+  
+  addTouchSupport() {
+    let startX = 0;
+    let startY = 0;
+    
+    const heroElement = document.getElementById('hero');
+    
+    heroElement?.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    });
+    
+    heroElement?.addEventListener('touchend', (e) => {
+      if (!startX || !startY) return;
+      
+      const endX = e.changedTouches[0].clientX;
+      const endY = e.changedTouches[0].clientY;
+      
+      const diffX = startX - endX;
+      const diffY = startY - endY;
+      
+      // Only trigger if horizontal swipe is greater than vertical
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (Math.abs(diffX) > 50) { // Minimum swipe distance
+          if (diffX > 0) {
+            this.nextSlide(); // Swipe left - next slide
+          } else {
+            this.previousSlide(); // Swipe right - previous slide
+          }
+        }
+      }
+      
+      startX = 0;
+      startY = 0;
+    });
+  }
+}
+
+// Initialize slider when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new VideoHeroSlider();
+});
+
+// Handle visibility change (pause videos when tab is not visible)
+document.addEventListener('visibilitychange', () => {
+  const activeVideo = document.querySelector('.slide.active video');
+  if (document.hidden) {
+    activeVideo?.pause();
+  } else {
+    activeVideo?.play().catch(e => console.log('Video autoplay prevented:', e));
+  }
+});
+</script>
